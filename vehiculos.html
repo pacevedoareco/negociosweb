@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehículos - Núñez Automotores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4a8c;
+            --secondary-blue: #2563eb;
+            --accent-yellow: #fbbf24;
+            --dark-blue: #1e293b;
+            --light-blue: #e0f2fe;
+            --neutral-gray: #64748b;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(30, 74, 140, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .company-name {
+            display: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .company-subtitle {
+            display: none;
+            font-size: 0.9rem;
+            color: var(--light-blue);
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-yellow);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a.active {
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--neutral-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filters */
+        .filters-section {
+            padding: 2rem 0;
+            background: var(--white);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .filters-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--white);
+            color: var(--text-dark);
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        /* Vehicles Grid */
+        .vehicles-section {
+            padding: 3rem 0;
+            background: var(--light-gray);
+        }
+
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .vehicle-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(30, 74, 140, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(30, 74, 140, 0.15);
+        }
+
+        .vehicle-image {
+            height: 280px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--neutral-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vehicle-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .vehicle-info {
+            padding: 2rem;
+        }
+
+        .vehicle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .vehicle-info h3 {
+            color: var(--dark-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .vehicle-brand {
+            color: var(--neutral-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .vehicle-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .vehicle-description {
+            color: var(--neutral-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .vehicle-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .spec-value {
+            color: var(--neutral-gray);
+        }
+
+        .vehicle-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .interest-button {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .interest-button:hover {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 74, 140, 0.3);
+        }
+
+        .details-button {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .details-button:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 3% auto;
+            padding: 2.5rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--neutral-gray);
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--dark-blue);
+        }
+
+        .modal h2 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .modal-vehicle-info {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--accent-yellow), #f59e0b);
+            color: var(--primary-blue);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(135deg, #f59e0b, var(--accent-yellow));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--neutral-gray);
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #475569;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                justify-content: space-between;
+            }
+
+            .vehicles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vehicle-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .vehicle-actions {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo"><img src="./img/logo.png"/></div>
+                    <div>
+                        <div class="company-name">Núñez Automotores</div>
+                        <div class="company-subtitle">Concesionario Oficial</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="#" class="active">Vehículos</a></li>
+                        <li><a href="accesorios.html">Accesorios</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Nuestros Vehículos</h1>
+            <p>Descubre nuestra amplia gama de automóviles y motocicletas de las mejores marcas del mercado, todos con garantía oficial y financiación disponible.</p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" class="filter-select">
+                        <option value="">Todos</option>
+                        <option value="auto">Automóviles</option>
+                        <option value="moto">Motocicletas</option>
+                        <option value="comercial">Comerciales</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="marca">Marca:</label>
+                    <select id="marca" class="filter-select">
+                        <option value="">Todas</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="ford">Ford</option>
+                        <option value="honda">Honda</option>
+                        <option value="volkswagen">Volkswagen</option>
+                        <option value="chevrolet">Chevrolet</option>
+                        <option value="nissan">Nissan</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="precio">Precio:</label>
+                    <select id="precio" class="filter-select">
+                        <option value="">Cualquier precio</option>
+                        <option value="bajo">Hasta $5M</option>
+                        <option value="medio">$5M - $10M</option>
+                        <option value="alto">Más de $10M</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Grid -->
+    <section class="vehicles-section">
+        <div class="container">
+            <div id="vehiclesGrid" class="vehicles-grid">
+                <!-- Vehicle Card 1 -->
+                <div class="vehicle-card" data-tipo="auto" data-marca="toyota" data-precio="medio">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Nuevo</div>
+                        🚗 Toyota Corolla 2024
+                    </div>
+                    <div class="vehicle-info">
+                        <div class="vehicle-header">
+                            <div>
+                                <h3>Corolla XEI CVT</h3>
+                                <div class="vehicle-brand">Toyota 2024</div>
+                            </div>
+                            <div class="vehicle-price">Consultar</div>
+                        </div>
+                        <p class="vehicle-description">
+                            Sedán familiar con excelente rendimiento de combustible y tecnología de última generación. Sistema de seguridad Toyota Safety Sense 2.0 incluido.
+                        </p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Motor:</span>
+                                <span class="spec-value">1.8L CVT</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Combustible:</span>
+                                <span class="spec-value">Nafta</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Puertas:</span>
+                                <span class="spec-value">4</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Asientos:</span>
+                                <span class="spec-value">5</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-actions">
+                            <button class="interest-button" onclick="openModal('Toyota Corolla XEI CVT 2024')">Me Interesa</button>
+                            <a href="#" class="details-button">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 2 -->
+                <div class="vehicle-card" data-tipo="auto" data-marca="ford" data-precio="medio">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Disponible</div>
+                        🏎️ Ford Focus 2024
+                    </div>
+                    <div class="vehicle-info">
+                        <div class="vehicle-header">
+                            <div>
+                                <h3>Focus Titanium</h3>
+                                <div class="vehicle-brand">Ford 2024</div>
+                            </div>
+                            <div class="vehicle-price">Consultar</div>
+                        </div>
+                        <p class="vehicle-description">
+                            Hatchback deportivo con diseño moderno y prestaciones superiores. Tecnología SYNC 3 y sistema de asistencia al conductor.
+                        </p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Motor:</span>
+                                <span class="spec-value">2.0L Turbo</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Combustible:</span>
+                                <span class="spec-value">Nafta</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Puertas:</span>
+                                <span class="spec-value">5</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Transmisión:</span>
+                                <span class="spec-value">Manual 6v</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-actions">
+                            <button class="interest-button" onclick="openModal('Ford Focus Titanium 2024')">Me Interesa</button>
+                            <a href="#" class="details-button">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 3 -->
+                <div class="vehicle-card" data-tipo="moto" data-marca="honda" data-precio="bajo">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Popular</div>
+                        🏍️ Honda CB 250F
+                    </div>
+                    <div class="vehicle-info">
+                        <div class="vehicle-header">
+                            <div>
+                                <h3>CB 250F</h3>
+                                <div class="vehicle-brand">Honda 2024</div>
+                            </div>
+                            <div class="vehicle-price">Consultar</div>
+                        </div>
+                        <p class="vehicle-description">
+                            Motocicleta urbana ideal para el día a día. Económica, confiable y perfecta para moverse por la ciudad con estilo y eficiencia.
+                        </p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Motor:</span>
+                                <span class="spec-value">250cc</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Tipo:</span>
+                                <span class="spec-value">Naked</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Combustible:</span>
+                                <span class="spec-value">Nafta</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Transmisión:</span>
+                                <span class="spec-value">Manual 5v</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-actions">
+                            <button class="interest-button" onclick="openModal('Honda CB 250F 2024')">Me Interesa</button>
+                            <a href="#" class="details-button">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 4 -->
+                <div class="vehicle-card" data-tipo="auto" data-marca="volkswagen" data-precio="alto">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Premium</div>
+                        🚗 VW Tiguan 2024
+                    </div>
+                    <div class="vehicle-info">
+                        <div class="vehicle-header">
+                            <div>
+                                <h3>Tiguan Highline</h3>
+                                <div class="vehicle-brand">Volkswagen 2024</div>
+                            </div>
+                            <div class="vehicle-price">Consultar</div>
+                        </div>
+                        <p class="vehicle-description">
+                            SUV premium con tracción integral 4MOTION, interior de lujo y tecnología de última generación. Ideal para familias exigentes.
+                        </p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Motor:</span>
+                                <span class="spec-value">1.4 TSI</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Tracción:</span>
+                                <span class="spec-value">4x4</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Puertas:</span>
+                                <span class="spec-value">5</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Asientos:</span>
+                                <span class="spec-value">7</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-actions">
+                            <button class="interest-button" onclick="openModal('Volkswagen Tiguan Highline 2024')">Me Interesa</button>
+                            <a href="#" class="details-button">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 5 -->
+                <div class="vehicle-card" data-tipo="comercial" data-marca="ford" data-precio="medio">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Comercial</div>
+                        🚐 Ford Transit 2024
+                    </div>
+                    <div class="vehicle-info">
+                        <div class="vehicle-header">
+                            <div>
+                                <h3>Transit Van</h3>
+                                <div class="vehicle-brand">Ford 2024</div>
+                            </div>
+                            <div class="vehicle-price">Consultar</div>
+                        </div>
+                        <p class="vehicle-description">
+                            Vehículo comercial con gran capacidad de carga y versatilidad. Ideal para empresas y emprendedores que necesitan transportar mercadería.
+                        </p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Motor:</span>
+                                <span class="spec-value">2.2L Diesel</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Carga:</span>
+                                <span class="spec-value">1200 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Volumen:</span>
+                                <span class="spec-value">10.5 m³</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Asientos:</span>
+                                <span class="spec-value">3</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-actions">
+                            <button class="interest-button" onclick="openModal('Ford Transit Van 2024')">Me Interesa</button>
+                            <a href="#" class="details-button">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 6 -->
+                <div class="vehicle-card" data-tipo="moto" data-marca="honda" data-precio="medio">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Deportiva</div>
+                        🏍️ Honda CBR 600RR
+                    </div>
+                    <div class="vehicle-info">
+                        <div class="vehicle-header">
+                            <div>
+                                <h3>CBR 600RR</h3>
+                                <div class="vehicle-brand">Honda 2024</div>
+                            </div>
+                            <div class="vehicle-price">Consultar</div>
+                        </div>
+                        <p class="vehicle-description">
+                            Motocicleta deportiva de alta performance con tecnología de MotoGP. Diseñada para los amantes de la velocidad y la adrenalina.
+                        </p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Motor:</span>
+                                <span class="spec-value">599cc</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Tipo:</span>
+                                <span class="spec-value">Deportiva</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Potencia:</span>
+                                <span class="spec-value">118 HP</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Transmisión:</span>
+                                <span class="spec-value">Manual 6v</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-actions">
+                            <button class="interest-button" onclick="openModal('Honda CBR 600RR 2024')">Me Interesa</button>
+                            <a href="#" class="details-button">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="noResults" class="no-results" style="display: none;">
+                <h3>No se encontraron vehículos</h3>
+                <p>Intenta ajustar los filtros para ver más opciones disponibles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Solicitar Información</h2>
+            <div id="vehicleInterest" class="modal-vehicle-info"></div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipoCliente">Tipo de Cliente</label>
+                    <select id="tipoCliente" name="tipoCliente">
+                        <option value="particular">Particular</option>
+                        <option value="empresa">Empresa</option>
+                        <option value="gobierno">Organización Gubernamental</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="consulta">¿Qué te interesa saber?</label>
+                    <select id="consulta" name="consulta">
+                        <option value="precio">Precio y financiación</option>
+                        <option value="caracteristicas">Características técnicas</option>
+                        <option value="disponibilidad">Disponibilidad</option>
+                        <option value="testdrive">Agendar test drive</option>
+                        <option value="intercambio">Plan de intercambio</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje Adicional</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos más sobre tu consulta..."></textarea>
+                </div>
+                <button type="submit" class="submit-button">Enviar Consulta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Núñez Automotores</h3>
+                    <p>Tu socio confiable en movilidad desde hace más de 20 años. Concesionario oficial de las mejores marcas.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 +54 11 [Teléfono]</p>
+                    <p>✉️ info@nunezautomotores.com.ar</p>
+                    <p><a href="https://www.instagram.com/automotoresnunez" target="_blank">📷 @automotoresnunez</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Horarios</h3>
+                    <p>Lunes a Viernes: 8:00 - 18:00</p>
+                    <p>Sábados: 8:00 - 13:00</p>
+                    <p>Domingos: Cerrado</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Núñez Automotores. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functionality
+        let currentVehicle = '';
+
+        function openModal(vehicleName) {
+            currentVehicle = vehicleName;
+            document.getElementById('vehicleInterest').textContent = `Estoy interesado/a en: ${vehicleName}`;
+            document.getElementById('contactModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                vehiculo: currentVehicle,
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                tipoCliente: document.getElementById('tipoCliente').value,
+                consulta: document.getElementById('consulta').value,
+                mensaje: document.getElementById('mensaje').value
+            };
+
+            // Here you would typically send the data to your server
+            console.log('Form data:', formData);
+            
+            alert('¡Gracias por tu consulta! Un asesor de ventas se contactará en las próximas 24 horas para brindarte toda la información que necesitás.');
+            closeModal();
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        });
+
+        // Filter functionality
+        const filters = {
+            tipo: document.getElementById('tipo'),
+            marca: document.getElementById('marca'),
+            precio: document.getElementById('precio')
+        };
+
+        function filterVehicles() {
+            const vehicleCards = document.querySelectorAll('.vehicle-card');
+            const vehiclesGrid = document.getElementById('vehiclesGrid');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+
+            vehicleCards.forEach(card => {
+                const cardTipo = card.getAttribute('data-tipo');
+                const cardMarca = card.getAttribute('data-marca');
+                const cardPrecio = card.getAttribute('data-precio');
+
+                const tipoMatch = !filters.tipo.value || cardTipo === filters.tipo.value;
+                const marcaMatch = !filters.marca.value || cardMarca === filters.marca.value;
+                const precioMatch = !filters.precio.value || cardPrecio === filters.precio.value;
+
+                if (tipoMatch && marcaMatch && precioMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+                vehiclesGrid.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                vehiclesGrid.style.display = 'grid';
+            }
+        }
+
+        // Add event listeners to filters
+        Object.values(filters).forEach(filter => {
+            filter.addEventListener('change', filterVehicles);
+        });
+
+        // Header background effect on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 74, 140, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe vehicle cards
+        document.querySelectorAll('.vehicle-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
