@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMax - Concesionario Oficial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(26,26,26,0.8), rgba(255,107,53,0.8)), 
+                        url('img/hero.png');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Vehicles Showroom */
+        .showroom {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .vehicle-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .vehicle-image {
+            height: 250px;
+            background: linear-gradient(45deg, #ddd, #eee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .vehicle-info {
+            padding: 1.5rem;
+        }
+
+        .vehicle-info h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .vehicle-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .interest-button {
+            width: 100%;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .interest-button:hover {
+            background: linear-gradient(45deg, #e55a2e, #e57a35);
+            transform: translateY(-2px);
+        }
+
+        /* Accessories Section */
+        .accessories {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .accessories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .accessory-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .accessory-card:hover {
+            background: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .accessory-image {
+            height: 150px;
+            background: #ddd;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(45deg, #e55a2e, #e57a35);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .vehicles-grid,
+            .accessories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">AutoMax</div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#vehiculos">Vehículos</a></li>
+                        <li><a href="#accesorios">Accesorios</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tu próximo vehículo te espera</h1>
+                <p>Concesionario oficial de 6 marcas reconocidas.<br />
+                Soluciones financieras, garantía y transparencia en cada compra.</p>
+                <a href="#vehiculos" class="cta-button">Ver vehículos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>6 Marcas Oficiales</h3>
+                    <p>Representamos las mejores marcas del mercado con garantía oficial y respaldo total.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Financiación Flexible</h3>
+                    <p>Planes de financiamiento adaptados a tus necesidades, tanto para particulares como empresas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Servicios Integrales</h3>
+                    <p>Gestoría, mecánica, transporte y todos los servicios que necesitas en un solo lugar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏢</div>
+                    <h3>B2B y B2C</h3>
+                    <p>Atendemos tanto a familias como a empresas y organizaciones gubernamentales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Showroom -->
+    <section id="vehiculos" class="showroom">
+        <div class="container">
+            <h2 class="section-title">Showroom Virtual</h2>
+            <div class="vehicles-grid">
+                <div class="vehicle-card">
+                    <div class="vehicle-image">🚗 Imagen del vehículo</div>
+                    <div class="vehicle-info">
+                        <h3>Toyota Corolla 2024</h3>
+                        <p>Sedán familiar con excelente rendimiento de combustible y tecnología de última generación. Ideal para uso diario y viajes largos.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-row">
+                                <span><strong>Motor:</strong></span>
+                                <span>1.8L Híbrido</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Combustible:</strong></span>
+                                <span>Híbrido</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Transmisión:</strong></span>
+                                <span>CVT</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Puertas:</strong></span>
+                                <span>4</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Asientos:</strong></span>
+                                <span>5</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Precio:</strong></span>
+                                <span>Consultar</span>
+                            </div>
+                        </div>
+                        <button class="interest-button" onclick="openModal('Toyota Corolla 2024')">Me Interesa</button>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">🏎️ Imagen del vehículo</div>
+                    <div class="vehicle-info">
+                        <h3>Ford Focus 2024</h3>
+                        <p>Hatchback deportivo con diseño moderno y prestaciones superiores. Perfecto equilibrio entre elegancia y rendimiento.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-row">
+                                <span><strong>Motor:</strong></span>
+                                <span>2.0L Turbo</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Combustible:</strong></span>
+                                <span>Nafta</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Transmisión:</strong></span>
+                                <span>Manual 6v</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Puertas:</strong></span>
+                                <span>5</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Asientos:</strong></span>
+                                <span>5</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Precio:</strong></span>
+                                <span>Consultar</span>
+                            </div>
+                        </div>
+                        <button class="interest-button" onclick="openModal('Ford Focus 2024')">Me Interesa</button>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">🏍️ Imagen de la moto</div>
+                    <div class="vehicle-info">
+                        <h3>Honda CB 250F</h3>
+                        <p>Motocicleta urbana ideal para el día a día. Económica, confiable y perfecta para moverse por la ciudad con estilo.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-row">
+                                <span><strong>Motor:</strong></span>
+                                <span>250cc</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Combustible:</strong></span>
+                                <span>Nafta</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Transmisión:</strong></span>
+                                <span>Manual 5v</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Tipo:</strong></span>
+                                <span>Naked</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Asientos:</strong></span>
+                                <span>2</span>
+                            </div>
+                            <div class="spec-row">
+                                <span><strong>Precio:</strong></span>
+                                <span>Consultar</span>
+                            </div>
+                        </div>
+                        <button class="interest-button" onclick="openModal('Honda CB 250F')">Me Interesa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessories Section -->
+    <section id="accesorios" class="accessories">
+        <div class="container">
+            <h2 class="section-title">Accesorios y Productos</h2>
+            <div class="accessories-grid">
+                <div class="accessory-card">
+                    <div class="accessory-image">🧴 Producto</div>
+                    <h3>Cuidado del Auto</h3>
+                    <p>Productos premium para mantener tu vehículo impecable: ceras, shampoos, pulimentos y más.</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-image">🪖 Casco</div>
+                    <h3>Cascos y Protección</h3>
+                    <p>Cascos certificados y equipos de protección para motociclistas. Seguridad y estilo garantizados.</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-image">🔧 Herramientas</div>
+                    <h3>Herramientas</h3>
+                    <p>Kit completo de herramientas para mantenimiento básico y emergencias en ruta.</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-image">📱 Electrónica</div>
+                    <h3>Electrónica</h3>
+                    <p>Sistemas de audio, GPS, cargadores y accesorios tecnológicos para tu vehículo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Información de contacto</h2>
+            <p id="vehicleInterest"></p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipoCliente">Tipo de cliente</label>
+                    <select id="tipoCliente" name="tipoCliente">
+                        <option value="particular">Particular</option>
+                        <option value="empresa">Empresa</option>
+                        <option value="gobierno">Organización gubernamental</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje Adicional</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Contanos más sobre tu interés o consulta..."></textarea>
+                </div>
+                <button type="submit" class="submit-button">Enviar consulta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AutoMax Concesionario</h3>
+                    <p>Tu socio confiable en movilidad. Más de 10 años brindando soluciones de transporte a familias, empresas y organizaciones.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📍 Dirección Principal, Buenos Aires</p>
+                    <p>📞 +54 11 1234-5678</p>
+                    <p>✉️ info@automax.com.ar</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <p>• Venta de vehículos nuevos</p>
+                    <p>• Financiación</p>
+                    <p>• Gestoría</p>
+                    <p>• Service y repuestos</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Marcas Oficiales</h3>
+                    <p>• Toyota • KIA • Nissan</p>
+                    <p>• Hyundai • Chevrolet</p>
+                    <p>• Mercedes-Benz</p>
+                </div>
+            </div>
+            <hr style="border: 1px solid #333; margin: 2rem 0;">
+            <p>&copy; 2025 AutoMax Concesionario. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functionality
+        let currentVehicle = '';
+
+        function openModal(vehicleName) {
+            currentVehicle = vehicleName;
+            document.getElementById('vehicleInterest').textContent = `Estoy interesado/a en: ${vehicleName}`;
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                vehiculo: currentVehicle,
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                tipoCliente: document.getElementById('tipoCliente').value,
+                mensaje: document.getElementById('mensaje').value
+            };
+
+            // Here you would typically send the data to your server
+            console.log('Form data:', formData);
+            
+            alert('¡Gracias por tu interés! Un representante de ventas se contactará contigo en las próximas 24 horas.');
+            closeModal();
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.vehicle-card, .accessory-card, .feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Header background effect on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 26, 26, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #333 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
