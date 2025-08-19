@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Núñez Automotores</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo"><img src="./img/logo.png"/></div>
+                    <div>
+                        <div class="company-name">Núñez Automotores</div>
+                        <div class="company-subtitle">Concesionario Oficial</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="vehiculos.html">Vehículos</a></li>
+                        <li><a href="accesorios.html">Accesorios</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="#" class="active">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contacto</h1>
+            <p>¿Tenés una consulta? Completá el formulario y un asesor te responderá dentro de las próximas 24 horas. También podés escribirnos por Instagram o llamarnos.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Hablemos</h2>
+            <p class="section-subtitle">Contanos qué necesitás y te ayudamos a elegir la mejor opción</p>
+
+            <div class="features-grid">
+                <div class="feature-card" style="text-align: left;">
+                    <div class="product-image">📝</div>
+                    <h3>Enviá tu consulta</h3>
+                    <form id="contactoForm">
+                        <div class="form-group">
+                            <label for="c_nombre">Nombre completo *</label>
+                            <input type="text" id="c_nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_email">Email *</label>
+                            <input type="email" id="c_email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_telefono">Teléfono *</label>
+                            <input type="tel" id="c_telefono" name="telefono" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_tipo">Tipo de consulta</label>
+                            <select id="c_tipo" name="tipo">
+                                <option value="vehiculos">Vehículos</option>
+                                <option value="servicios">Servicios</option>
+                                <option value="accesorios">Accesorios</option>
+                                <option value="financiacion">Financiación</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_mensaje">Mensaje</label>
+                            <textarea id="c_mensaje" name="mensaje" rows="5" placeholder="Contanos en qué podemos ayudarte..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Enviar consulta</button>
+                    </form>
+                </div>
+                <div class="feature-card">
+                    <div class="product-image">📍</div>
+                    <h3>Nuestras vías de contacto</h3>
+                    <p>📍 Av. San martin 770, Colón, Entre Rios, Argentina</p>
+                    <p>📞 +54 3447 42-1328</p>
+                    <p>✉️ nunezautomotores@gmail.com</p>
+                    <p><a class="service-link" href="https://www.instagram.com/automotoresnunez" target="_blank"><i class="fa-brands fa-instagram"></i> @automotoresnunez</a></p>
+                    <div style="height: 600px; background: none; border-radius: 12px; display:flex; align-items:center; justify-content:center; color:#64748b; margin-top:1rem;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27001.844527785976!2d-58.185405134570516!3d-32.224957779518114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ae32e3b13fdd33%3A0x25cf16356c41cbd7!2sNu%C3%B1ez%20Automotores!5e0!3m2!1sen!2sdk!4v1755599006573!5m2!1sen!2sdk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Preferís que te llamemos?</h2>
+            <p>Dejanos tus datos y un asesor se comunica a la brevedad.</p>
+            <a href="#contact" class="cta-button secondary" onclick="document.getElementById('c_nombre').focus(); return false;">Completar mis datos</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Núñez Automotores</h3>
+                    <p>Tu socio confiable en movilidad desde hace más de 30 años. Brindamos soluciones de transporte integrales a familias, empresas y organizaciones en toda Argentina.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto Principal</h3>
+                    <p>📍 San Martin 770, Colón, Entre Rios</p>
+                    <p>📞 +54 3447 42-1328</p>
+                    <p>✉️ nunezautomotores@gmail.com</p>
+                    <p>🕒 Lun a Vie: 8:00 - 12:00 y 3:30 - 19:30</p>
+                    <p><a href="https://www.instagram.com/automotoresnunez" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i> automotoresnunez</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <p><a href="vehiculos.html">Venta de vehículos nuevos</a></p>
+                    <p><a href="servicios.html">Financiación personalizada</a></p>
+                    <p><a href="servicios.html">Gestoría y trámites</a></p>
+                    <p><a href="servicios.html">Service y repuestos</a></p>
+                    <p><a href="accesorios.html">Accesorios premium</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Núñez Automotores. Todos los derechos reservados. | Concesionario oficial autorizado</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        (function initContactForm(){
+            const form = document.getElementById('contactoForm');
+            if (!form) return;
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                const payload = {
+                    nombre: document.getElementById('c_nombre').value,
+                    email: document.getElementById('c_email').value,
+                    telefono: document.getElementById('c_telefono').value,
+                    tipo: document.getElementById('c_tipo').value,
+                    mensaje: document.getElementById('c_mensaje').value,
+                };
+                console.log('Contacto:', payload);
+                alert('¡Gracias por escribirnos! Te responderemos a la brevedad.');
+                form.reset();
+            });
+        })();
+    </script>
+</body>
+</html> 

@@ -4,598 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accesorios - Núñez Automotores</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-blue: #1e4a8c;
-            --secondary-blue: #2563eb;
-            --accent-yellow: #fbbf24;
-            --dark-blue: #1e293b;
-            --light-blue: #e0f2fe;
-            --neutral-gray: #64748b;
-            --light-gray: #f8fafc;
-            --white: #ffffff;
-            --text-dark: #1e293b;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--white);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(30, 74, 140, 0.15);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: var(--white);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--primary-blue);
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 0.5rem;
-        }
-
-        .company-name {
-            display: none;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .company-subtitle {
-            display: none;
-            font-size: 0.9rem;
-            color: var(--light-blue);
-            font-weight: 400;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-
-        nav a:hover {
-            color: var(--accent-yellow);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        nav a.active {
-            background: var(--accent-yellow);
-            color: var(--primary-blue);
-            font-weight: 600;
-        }
-        /* CTA Section */
-        .cta-section {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .cta-button.primary {
-            background: var(--accent-yellow);
-            color: var(--primary-blue);
-            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
-        }
-
-        .cta-button.primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(251, 191, 36, 0.4);
-            background: #f59e0b;
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .cta-button.secondary:hover {
-            background: white;
-            color: var(--primary-blue);
-            transform: translateY(-3px);
-        }
-
-        /* Page Header */
-        .page-header {
-            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
-            padding: 4rem 0 2rem;
-            text-align: center;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            color: var(--dark-blue);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            color: var(--neutral-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Categories */
-        .categories-section {
-            padding: 3rem 0;
-            background: var(--white);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .category-card {
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-            cursor: pointer;
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(30, 74, 140, 0.1);
-            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
-        }
-
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 20px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .category-card h3 {
-            color: var(--dark-blue);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .category-card p {
-            color: var(--neutral-gray);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .category-count {
-            color: var(--primary-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Products Grid */
-        .products-section {
-            padding: 3rem 0;
-            background: var(--light-gray);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--dark-blue);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--neutral-gray);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(30, 74, 140, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(30, 74, 140, 0.15);
-        }
-
-        .product-image {
-            height: 200px;
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            position: relative;
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--accent-yellow);
-            color: var(--primary-blue);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .product-info {
-            padding: 2rem;
-        }
-
-        .product-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .product-info h3 {
-            color: var(--dark-blue);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-category {
-            color: var(--neutral-gray);
-            font-size: 0.9rem;
-        }
-
-        .product-price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-        }
-
-        .product-description {
-            color: var(--neutral-gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .product-features li {
-            color: var(--neutral-gray);
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .product-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary-blue);
-            font-weight: bold;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .add-cart-button {
-            flex: 1;
-            background: linear-gradient(135deg, var(--accent-yellow), #f59e0b);
-            color: var(--primary-blue);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .add-cart-button:hover {
-            background: linear-gradient(135deg, #f59e0b, var(--accent-yellow));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
-        }
-
-        .contact-button {
-            background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .contact-button:hover {
-            background: var(--primary-blue);
-            color: white;
-        }
-
-        /* Filter Categories */
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--primary-blue);
-            color: white;
-        }
-
-        /* Cart Summary */
-        .cart-summary {
-            position: fixed;
-            top: 50%;
-            right: -300px;
-            transform: translateY(-50%);
-            width: 280px;
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(30, 74, 140, 0.2);
-            padding: 1.5rem;
-            transition: right 0.3s ease;
-            z-index: 200;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .cart-summary.show {
-            right: 20px;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .cart-header h3 {
-            color: var(--dark-blue);
-            font-size: 1.2rem;
-        }
-
-        .cart-toggle {
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .cart-total {
-            font-weight: 700;
-            color: var(--primary-blue);
-            font-size: 1.1rem;
-            text-align: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid var(--accent-yellow);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-blue);
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            color: var(--accent-yellow);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: #cbd5e1;
-            text-decoration: none;
-            line-height: 1.8;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent-yellow);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #475569;
-            color: #94a3b8;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .logo-section {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-actions {
-                flex-direction: column;
-            }
-
-            .cart-summary {
-                position: fixed;
-                bottom: -300px;
-                right: 20px;
-                left: 20px;
-                top: auto;
-                width: auto;
-                transform: none;
-            }
-
-            .cart-summary.show {
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -665,9 +75,11 @@
     <!-- Products Section -->
     <section class="products-section">
         <div class="container">
-            <h2 class="section-title">Nuestros Productos</h2>
-            <p class="section-subtitle">Selecciona una categoría o explora todos nuestros productos disponibles</p>
-            
+            <h2 class="section-title">Nuestros productos</h2>
+            <p class="section-subtitle">Seleccioná una categoría o buscá entre todos nuestros productos disponibles:</p>
+            <div class="products-search">
+                <input id="productsSearch" type="text" placeholder="Buscar por nombre, descripción o categoría..." />
+            </div>
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="cuidado">Cuidado</button>
@@ -787,10 +199,234 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Electrónica Products -->
+                <div class="product-card" data-category="electronica">
+                    <div class="product-image">
+                        📻
+                        <div class="product-badge">Bluetooth</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>Stereo Android Auto</h3>
+                                <div class="product-category">Electrónica y Tecnología</div>
+                            </div>
+                            <div class="product-price">$125.000</div>
+                        </div>
+                        <p class="product-description">
+                            Stereo multimedia con pantalla táctil 7", Android Auto, Apple CarPlay y conectividad Bluetooth.
+                        </p>
+                        <ul class="product-features">
+                            <li>Pantalla táctil HD 7 pulgadas</li>
+                            <li>Android Auto y Apple CarPlay</li>
+                            <li>Bluetooth y USB</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('Stereo Android Auto', 125000)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="electronica">
+                    <div class="product-image">🗺️</div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>GPS Garmin Drive</h3>
+                                <div class="product-category">Electrónica y Tecnología</div>
+                            </div>
+                            <div class="product-price">$67.800</div>
+                        </div>
+                        <p class="product-description">
+                            GPS con mapas actualizados de Argentina, alertas de tráfico en tiempo real y guía de voz.
+                        </p>
+                        <ul class="product-features">
+                            <li>Pantalla 5 pulgadas</li>
+                            <li>Mapas de Argentina incluidos</li>
+                            <li>Alertas de tráfico en vivo</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('GPS Garmin Drive', 67800)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="electronica">
+                    <div class="product-image">📹</div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>Dashcam Full HD</h3>
+                                <div class="product-category">Electrónica y Tecnología</div>
+                            </div>
+                            <div class="product-price">$38.900</div>
+                        </div>
+                        <p class="product-description">
+                            Cámara para auto con grabación Full HD, visión nocturna y sensor G para detección de impactos.
+                        </p>
+                        <ul class="product-features">
+                            <li>Grabación Full HD 1080p</li>
+                            <li>Visión nocturna infrarroja</li>
+                            <li>Sensor G anti-impactos</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('Dashcam Full HD', 38900)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Herramientas Products -->
+                <div class="product-card" data-category="herramientas">
+                    <div class="product-image">
+                        🧰
+                        <div class="product-badge">Completo</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>Kit Herramientas Auto</h3>
+                                <div class="product-category">Herramientas y Repuestos</div>
+                            </div>
+                            <div class="product-price">$32.400</div>
+                        </div>
+                        <p class="product-description">
+                            Kit completo con 68 piezas: destornilladores, llaves, alicates y accesorios para emergencias.
+                        </p>
+                        <ul class="product-features">
+                            <li>68 piezas profesionales</li>
+                            <li>Estuche organizador resistente</li>
+                            <li>Garantía de 2 años</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('Kit Herramientas Auto', 32400)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="herramientas">
+                    <div class="product-image">⚡</div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>Arrancador Portátil</h3>
+                                <div class="product-category">Herramientas y Repuestos</div>
+                            </div>
+                            <div class="product-price">$54.700</div>
+                        </div>
+                        <p class="product-description">
+                            Arrancador de batería portátil con cargador USB, linterna LED y compresor de aire integrado.
+                        </p>
+                        <ul class="product-features">
+                            <li>Capacidad 12000mAh</li>
+                            <li>Arranca motores hasta 6.0L</li>
+                            <li>Cargador USB y linterna</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('Arrancador Portátil', 54700)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="herramientas">
+                    <div class="product-image">🔧</div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>Llave de Rueda Eléctrica</h3>
+                                <div class="product-category">Herramientas y Repuestos</div>
+                            </div>
+                            <div class="product-price">$78.200</div>
+                        </div>
+                        <p class="product-description">
+                            Llave de impacto eléctrica 12V con adaptador para encendedor y kit de tubos para ruedas.
+                        </p>
+                        <ul class="product-features">
+                            <li>Motor 12V alta potencia</li>
+                            <li>4 tubos intercambiables</li>
+                            <li>Cable 3 metros</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('Llave de Rueda Eléctrica', 78200)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Cuidado Products -->
+                <div class="product-card" data-category="cuidado">
+                    <div class="product-image">🧽</div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>Set Paños Microfibra</h3>
+                                <div class="product-category">Cuidado del Vehículo</div>
+                            </div>
+                            <div class="product-price">$12.800</div>
+                        </div>
+                        <p class="product-description">
+                            Set de 6 paños de microfibra premium para diferentes usos: lavado, secado y pulido.
+                        </p>
+                        <ul class="product-features">
+                            <li>6 paños especializados</li>
+                            <li>Microfibra 400 GSM</li>
+                            <li>Lavable en lavarropas</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('Set Paños Microfibra', 12800)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="electronica">
+                    <div class="product-image">🔌</div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div>
+                                <h3>Cargador USB Dual</h3>
+                                <div class="product-category">Electrónica y Tecnología</div>
+                            </div>
+                            <div class="product-price">$8.900</div>
+                        </div>
+                        <p class="product-description">
+                            Cargador para auto con 2 puertos USB de carga rápida y display LED de voltaje.
+                        </p>
+                        <ul class="product-features">
+                            <li>2 puertos USB 3.1A</li>
+                            <li>Carga rápida QC 3.0</li>
+                            <li>Display voltaje batería</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="add-cart-button" onclick="addToCart('Cargador USB Dual', 8900)">Agregar</button>
+                            <a href="contacto.html" class="contact-button">Consultar</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-        <!-- CTA Section -->
+
+    <!-- Cart Summary -->
+    <div id="cartSummary" class="cart-summary">
+        <div class="cart-header">
+            <h3>Mi Pedido (<span id="cartCount">0</span>)</h3>
+            <button class="cart-toggle" onclick="toggleCart()">×</button>
+        </div>
+        <div id="cartItems"></div>
+        <div id="cartTotal" class="cart-total">Total: $0</div>
+        <button class="add-cart-button" style="width: 100%; margin-top: 1rem;" onclick="contactForPurchase()">
+            Contactar para comprar
+        </button>
+    </div>
+
+
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <h2>¿Listo para tu próximo vehículo?</h2>
@@ -798,26 +434,21 @@
             <a href="contacto.html" class="cta-button secondary">Solicitar Asesoramiento</a>
         </div>
     </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Núñez Automotores</h3>
-                    <p>Tu socio confiable en movilidad desde hace más de 20 años. Brindamos soluciones de transporte integrales a familias, empresas y organizaciones en toda Argentina.</p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/automotoresnunez" target="_blank" class="social-link">📷</a>
-                        <a href="#" class="social-link">📘</a>
-                        <a href="#" class="social-link">📱</a>
-                    </div>
+                    <p>Tu socio confiable en movilidad desde hace más de 30 años. Brindamos soluciones de transporte integrales a familias, empresas y organizaciones en toda Argentina.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Contacto Principal</h3>
-                    <p>📍 [Dirección Principal]<br>Buenos Aires, Argentina</p>
-                    <p>📞 +54 11 [Teléfono]</p>
-                    <p>✉️ info@nunezautomotores.com.ar</p>
-                    <p>🕒 Lun a Vie: 8:00 - 18:00<br>Sáb: 8:00 - 13:00</p>
+                    <p>📍 San Martin 770, Colón, Entre Rios</p>
+                    <p>📞 +54 3447 42-1328</p>
+                    <p>✉️ nunezautomotores@gmail.com</p>
+                    <p>🕒 Lun a Vie: 8:00 - 12:00 y 3:30 - 19:30</p>
+                    <p><a href="https://www.instagram.com/automotoresnunez" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i> automotoresnunez</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Servicios</h3>
@@ -827,15 +458,6 @@
                     <p><a href="servicios.html">Service y repuestos</a></p>
                     <p><a href="accesorios.html">Accesorios premium</a></p>
                 </div>
-                <div class="footer-section">
-                    <h3>Marcas Oficiales</h3>
-                    <p>🚗 Toyota</p>
-                    <p>🚗 Ford</p>
-                    <p>🏍️ Honda</p>
-                    <p>🚗 Volkswagen</p>
-                    <p>🚗 Chevrolet</p>
-                    <p>🚗 Nissan</p>
-                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Núñez Automotores. Todos los derechos reservados. | Concesionario oficial autorizado</p>
@@ -843,55 +465,6 @@
         </div>
     </footer>
 
-    <script>
-        // Header background effect on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(30, 74, 140, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%)';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add animation on scroll for feature cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all feature cards and service cards
-        document.querySelectorAll('.feature-card, .service-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
